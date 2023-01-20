@@ -5,6 +5,10 @@ this bash script perform mint, burn and send automatically.<br>
 
 ## Installation
 
+0. Install dependencies:
+```
+apt install bc -y
+```
 1. Download the script:
 ```
 wget -O bms.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/bms.sh
