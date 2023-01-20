@@ -6,7 +6,7 @@ function WaitTransactionToBeCompleted() {
 
     TRANSACTION_STATUS="unconfirmed."
     while [[ ${TRANSACTION_STATUS} != "confirmed" ]]; do
-        TRANSACTION_STATUS=$(ironfish wallet:transaction ${HASH} | grep "Status: " | sed "s/Status: //")
+        TRANSACTION_STATUS=$(${BIN} wallet:transaction ${HASH} | grep "Status: " | sed "s/Status: //")
         if [[ ${TRANSACTION_STATUS} != "confirmed" ]]; then
             echo -e "hash: ${HASH}, transaction status: ${TRANSACTION_STATUS}."
             sleep 10
@@ -18,25 +18,25 @@ function WaitTransactionToBeCompleted() {
 
 
 function GetBalanceFunc() {
-    ironfish wallet:balance ${GRAFFITI} | grep -o "[0-9]\+.[0-9]*" | tail -1
+    ${BIN} wallet:balance | grep -o "[0-9]\+.[0-9]*" | tail -1
 }
 
 
 function MintFunc() {
-    RESULT=$(echo "Y" | ironfish wallet:mint --name=${GRAFFITI} --metadata=${GRAFFITI}  --amount=1000 --fee=0.00000001 | tr -d '\0')
+    RESULT=$(echo "Y" | ${BIN} wallet:mint --name=${GRAFFITI} --metadata=${GRAFFITI}  --amount=1000 --fee=0.00000001 | tr -d '\0')
     CheckResultFunc "MINT" "${RESULT}"
 }
 
 
 function BurnFunc() {
-    RESULT=$(echo "Y" | ironfish wallet:burn --assetId=${IDENTIFIER} --amount=500 --fee=0.00000001 | tr -d '\0')
+    RESULT=$(echo "Y" | ${BIN} wallet:burn --assetId=${IDENTIFIER} --amount=500 --fee=0.00000001 | tr -d '\0')
     CheckResultFunc "BURN" "${RESULT}"
 }
 
 
 function SendFunc() {
     ADDRESS_TO_SEND="dfc2679369551e64e3950e06a88e68466e813c63b100283520045925adbe59ca"
-    RESULT=$(echo "Y" | ironfish wallet:send --assetId=${IDENTIFIER} --amount 500 --to ${ADDRESS_TO_SEND} --memo "${GRAFFITI}" --fee=0.00000001 | tr -d '\0')
+    RESULT=$(echo "Y" | ${BIN} wallet:send --assetId=${IDENTIFIER} --amount 500 --to ${ADDRESS_TO_SEND} --memo "${GRAFFITI}" --fee=0.00000001 | tr -d '\0')
     CheckResultFunc "SEND" "${RESULT}"
 }
 
@@ -81,8 +81,24 @@ function TryUntilSuccessFunc() {
 }
 
 
+function GetBinaryFunc() {
+    BINARY=$(which ironfish)
+    if [[ ${BINARY} == "" ]]; then
+        DOCKER_CONTAINER=$(docker ps | grep ironfish | awk '{ print $1 }')
+        DOCKER_TEST=$(docker exec -it ${DOCKER_CONTAINER} ironfish)
+        if [[ ${DOCKER_TEST} == *"Error"* ]]; then
+            echo "i don't know where is your 'ironfish' binary. set it manually."
+        else
+            BINARY="docker exec -it ${DOCKER_CONTAINER} ironfish"
+        fi
+    fi
+    echo ${BINARY}
+}
+
+
 function MainFunc() {
-    GRAFFITI=$(echo $(ironfish config:get blockGraffiti) | sed 's/\"//g')
+    BIN=$(GetBinaryFunc)
+    GRAFFITI=$(echo $(${BIN} config:get blockGraffiti) | sed 's/\"//g')
 
     if [ $(echo "$(GetBalanceFunc) > 0.00000003" | bc ) -eq 1 ]; then
         TryUntilSuccessFunc "MintFunc"
