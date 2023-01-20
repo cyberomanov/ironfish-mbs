@@ -84,7 +84,7 @@ function TryUntilSuccessFunc() {
 function MainFunc() {
     GRAFFITI=$(echo $(ironfish config:get blockGraffiti) | sed 's/\"//g')
 
-    if [[ $(echo $(GetBalanceFunc) | bc) > .00000003 ]]; then
+    if [ $(echo "$(GetBalanceFunc) > 0.00000003" | bc ) -eq 1 ]; then
         TryUntilSuccessFunc "MintFunc"
         TryUntilSuccessFunc "BurnFunc"
         TryUntilSuccessFunc "SendFunc"
