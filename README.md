@@ -48,4 +48,6 @@ hash: 1ece69e539d9a4052a41909828f477e35050ea482772b8975df5a471d32bfac4, transact
 hash: 1ece69e539d9a4052a41909828f477e35050ea482772b8975df5a471d32bfac4, transaction status: unconfirmed.
 hash: 1ece69e539d9a4052a41909828f477e35050ea482772b8975df5a471d32bfac4, transaction status: unconfirmed.
 hash: 1ece69e539d9a4052a41909828f477e35050ea482772b8975df5a471d32bfac4, transaction status: confirmed.
+
+with love by @cyberomanov.
 ```
