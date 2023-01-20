@@ -7,7 +7,7 @@ this bash script perform mint, burn and send automatically.<br>
 
 1. Download the script:
 ```
-wget -O bms.sh https://raw.githubusercontent.com/cyberomanov/ironfish-help/main/bms.sh
+wget -O bms.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/bms.sh
 ```
 2. Edit script permissions:
 ```
