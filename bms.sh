@@ -53,7 +53,7 @@ function CheckResultFunc() {
 
     FUNCTION_NAME=${1}
     FUNCTION_RESULT=${2}
-    
+
     if [[ ${FUNCTION_RESULT} == *"Transaction Hash"* ]]; then
         FUNC_RESULT="success"
         echo -e "\n/////////////////// [ ${FUNCTION_NAME} | SUCCESS | #${FUNC_TRY} ] ///////////////////\n"
@@ -77,6 +77,7 @@ function TryUntilSuccessFunc() {
     while [[ ${FUNC_RESULT} == "fail" ]]; do
         FUNC_TRY=$((FUNC_TRY + 1))
         ${FUNCTION}
+        sleep 5
     done
 }
 
@@ -89,7 +90,7 @@ function GetBinaryFunc() {
         if [[ ${DOCKER_TEST} == *"Error"* ]]; then
             echo "i don't know where is your 'ironfish' binary. set it manually."
         else
-            BINARY="docker exec -it ${DOCKER_CONTAINER} ironfish"
+            BINARY="docker exec -i ${DOCKER_CONTAINER} ironfish"
         fi
     fi
     echo ${BINARY}
