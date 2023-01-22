@@ -5,23 +5,36 @@ this bash script perform mint, burn and send automatically.<br>
 
 ## Installation
 
-0. Install dependencies:
+### One-line
+
+1. Run the commands:
+```
+apt install bc -y && \
+wget -O mbs.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/mbs.sh && \
+chmod u+x mbs.sh
+```
+### Step-by-step
+
+1. Install dependencies:
 ```
 apt install bc -y
 ```
-1. Download the script:
+2. Download the script:
 ```
 wget -O mbs.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/mbs.sh
 ```
-2. Edit script permissions:
+3. Edit script permissions:
 ```
 chmod u+x mbs.sh
 ```
-3. Run the script:
+
+## Execute
+
+1. Run the script manually:
 ```
 ./mbs.sh
 ```
-4. Be happy:
+2. Be happy:
 ```
 Creating the transaction: [████████████████████████████████████████] 100% | ETA: 0s
 
@@ -54,4 +67,17 @@ hash: 1ece69e539d9a4052a41909828f477e35050ea482772b8975df5a471d32bfac4, transact
 hash: 1ece69e539d9a4052a41909828f477e35050ea482772b8975df5a471d32bfac4, transaction status: confirmed.
 
 with love by @cyberomanov.
+```
+
+## Crontab
+1. Open crontab editor:
+
+```
+crontab -e
+```
+2. Set a new rule:
+> With this settings script will be executed twice a day at 06:10 and 18:10 o'clock and all output will be logged into `~/mbs.log`.
+> You can set another rules to be more unique.
+```
+10 6,18 * * * bash /root/mbs.sh >> /root/mbs.log
 ```
