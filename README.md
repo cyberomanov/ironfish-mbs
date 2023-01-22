@@ -11,15 +11,15 @@ apt install bc -y
 ```
 1. Download the script:
 ```
-wget -O bms.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/bms.sh
+wget -O mbs.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/mbs.sh
 ```
 2. Edit script permissions:
 ```
-chmod u+x bms.sh
+chmod u+x mbs.sh
 ```
 3. Run the script:
 ```
-./bms.sh
+./mbs.sh
 ```
 4. Be happy:
 ```
