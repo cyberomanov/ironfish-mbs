@@ -76,7 +76,7 @@ with love by @cyberomanov.
 ```
 crontab -e
 ```
-2. Set one of rules or create your own:
+2. Set one of rules or create your own. Use [crontab.guru](https://crontab.guru/), if you like one-liners:
 > With this settings script will be executed twice a day at 06:10 and 18:10 o'clock and all output will be logged into `/root/mbs.log`.
 ```
 10 6,18 * * * bash /root/mbs.sh >> /root/mbs.log
