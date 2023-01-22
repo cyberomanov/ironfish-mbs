@@ -75,9 +75,12 @@ with love by @cyberomanov.
 ```
 crontab -e
 ```
-2. Set a new rule:
+2. Set one of rules:
 > With this settings script will be executed twice a day at 06:10 and 18:10 o'clock and all output will be logged into `~/mbs.log`.
-> You can set another rules to be more unique.
 ```
 10 6,18 * * * bash /root/mbs.sh >> /root/mbs.log
+```
+> With this settings script will be executed 1 day per week, on Sunday at 14:55 o'clock and all output will be logged into `~/mbs.log`.
+```
+55 14 * * SUN bash /root/mbs.sh >> /root/mbs.log
 ```
