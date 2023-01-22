@@ -9,7 +9,8 @@ this bash script perform mint, burn and send automatically.<br>
 
 1. Run the commands:
 ```
-apt install bc -y && \
+apt update && \
+apt install bc wget -y && \
 wget -O mbs.sh https://raw.githubusercontent.com/cyberomanov/ironfish-mbs/main/mbs.sh && \
 chmod u+x mbs.sh
 ```
@@ -17,7 +18,7 @@ chmod u+x mbs.sh
 
 1. Install dependencies:
 ```
-apt install bc -y
+apt update && apt install bc wget -y
 ```
 2. Download the script:
 ```
