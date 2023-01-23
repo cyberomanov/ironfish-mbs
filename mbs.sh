@@ -192,12 +192,18 @@ function TryUntilSuccessMainFunc() {
 
 
 function MainFunc() {
-    MAIL=""
+    MAIL=${1}
+
     BIN=$(GetBinaryFunc)
     GRAFFITI=$(echo $(${BIN} config:get blockGraffiti) | sed 's/\"//g')
 
-    FaucetRequestFunc "${MAIL}"
+    if [[ ${MAIL} != "" ]]; then
+        FaucetRequestFunc "${MAIL}"
+    else
+        FaucetRequestFunc
+    fi
+
     TryUntilSuccessMainFunc
 }
 
-MainFunc
+MainFunc "${1}"
