@@ -71,17 +71,16 @@ with love by @cyberomanov.
 ```
 
 ## Crontab
-1. Open crontab editor:
-
+1. Update crontab:
+```
+apt update && apt install cron --reinstall
+```
+2. Open crontab editor:
 ```
 crontab -e
 ```
-2. Set one of rules or create your own. Use [crontab.guru](https://crontab.guru/), if you like one-liners:
+3. Set one of rules or create your own. Use [crontab.guru](https://crontab.guru/), if you like one-liners:
 > With this settings script will be executed twice a day at 06:10 and 18:10 o'clock and all output will be logged into `/root/mbs.log`.
 ```
 10 6,18 * * * bash /root/mbs.sh >> /root/mbs.log
-```
-> With this settings script will be executed 1 day per week, on Saturday at 14:55 o'clock and all output will be logged into `/root/mbs.log`.
-```
-55 14 * * SAT bash /root/mbs.sh >> /root/mbs.log
 ```
