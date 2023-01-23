@@ -117,9 +117,9 @@ function FaucetRequestFunc() {
     if [[ ${1} != '' ]]; then
         FAUCET_RESULT=$(echo -e "${1}\n\n" | ironfish faucet)
         if [[ ${FAUCET_RESULT} == *"Congratulations"* ]]; then
-            echo -e "${1}\n\nfaucet just added your request to the queue.\n"
+            echo -e "${1}.\n\nfaucet just added your request to the queue.\n"
         else
-            echo -e "${1}\n\nfaucet request failed.\n"
+            echo -e "${1}.\n\nfaucet request failed.\n"
         fi
     else
         FAUCET_RESULT=$(echo -e "\n\n" | ironfish faucet)
