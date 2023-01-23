@@ -153,7 +153,7 @@ function TryUntilSuccessLocalFunc() {
     FUNC_RESULT="fail"
     FUNC_TRY=0
 
-    while [[ ${FUNC_RESULT} == "fail" ]] && [[ ${FUNC_TRY} != 10 ]]; do
+    while [[ ${FUNC_RESULT} == "fail" ]] && [[ ${FUNC_TRY} != 100 ]]; do
         FUNC_TRY=$((FUNC_TRY + 1))
         ${FUNCTION}
         sleep 5
