@@ -92,7 +92,7 @@ apt update && apt install cron --reinstall
 crontab -e
 ```
 3. Set one of rules or create your own. Use [crontab.guru](https://crontab.guru/), if you like one-liners:
-> With this settings script will be executed twice a day at 06:10 and 18:10 o'clock and all output will be logged into `/root/mbs.log`.
+> With this settings script will be executed every 4 hours and all output will be logged into `/root/mbs.log`.
 ```
-10 6,18 * * * bash /root/mbs.sh >> /root/mbs.log
+10 0,4,8,12,16,20 * * * bash /root/mbs.sh >> /root/mbs.log
 ```
