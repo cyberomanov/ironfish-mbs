@@ -40,7 +40,7 @@ chmod u+x mbs.sh
 ```
 root@cyberomanov:~# ./mbs.sh 
 
-Enter your email to stay updated with Iron Fish: test@gmail.com
+Enter your email to stay updated with Iron Fish: test@gmail.com.
 
 faucet just added your request to the queue.
 
