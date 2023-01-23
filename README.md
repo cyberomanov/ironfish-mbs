@@ -31,15 +31,17 @@ chmod u+x mbs.sh
 
 ## Execute
 
-> You can open the code with `nano mbs.sh` and insert your email for future faucet requests. 
 1. Run the script manually:
 ```
 ./mbs.sh
 ```
+> You can run `./mbs.sh` without providing an email, that the faucet request will be executed without any email.
+```
+./mbs.sh "test@gmail.com"
+```
+> You can run `./mbs.sh "test@gmail.com"` with providing an email, that the faucet request will be executed with an specified email.
 2. Be happy:
 ```
-root@cyberomanov:~# ./mbs.sh 
-
 Enter your email to stay updated with Iron Fish: test@gmail.com.
 
 faucet just added your request to the queue.
@@ -93,6 +95,12 @@ crontab -e
 ```
 3. Set one of rules or create your own. Use [crontab.guru](https://crontab.guru/), if you like one-liners:
 > With this settings script will be executed every 4 hours and all output will be logged into `/root/mbs.log`.
+> Faucet request will be executed without any email.
 ```
 10 0,4,8,12,16,20 * * * bash /root/mbs.sh >> /root/mbs.log
+```
+> With this settings script will be executed every 4 hours and all output will be logged into `/root/mbs.log`.
+> Faucet request will be executed with an specified email.
+```
+10 0,4,8,12,16,20 * * * bash /root/mbs.sh "test@gmail.com" >> /root/mbs.log
 ```
