@@ -54,7 +54,7 @@ function GetBalanceFunc() {
     if [[ ${1} == '' ]]; then
         ${BIN} wallet:balance | grep -o "[0-9]\+.[0-9]*" | tail -1
     else
-        ${BIN} wallet:balance --assetId=${1} | grep -o "[0-9]\+.[0-9]*" | tail -1
+        ${BIN} wallet:balance --assetId=${IDENTIFIER} | grep -Eo "[0-9]+([.][0-9]+)?" | tail -1
     fi
 }
 
@@ -153,41 +153,18 @@ function TryUntilSuccessLocalFunc() {
     FUNC_RESULT="fail"
     FUNC_TRY=0
 
-    while [[ ${FUNC_RESULT} == "fail" ]] && [[ ${FUNC_TRY} != 100 ]]; do
+    MAX_TRIES=100
+
+    while [[ ${FUNC_RESULT} == "fail" ]] && [[ ${FUNC_TRY} != ${MAX_TRIES} ]]; do
         FUNC_TRY=$((FUNC_TRY + 1))
         ${FUNCTION}
-        sleep 5
+        sleep 10
     done
 
-    if [[ ${FUNC_TRY} == 10 ]]; then
+    if [[ ${FUNC_TRY} == ${MAX_TRIES} ]]; then
         START_FROM_ZERO="true"
-        echo -e "\n\nthis is not okay, starting from zero.\n"
+        echo -e "\nthis is not okay, sorry.\n"
     fi
-}
-
-
-function TryUntilSuccessMainFunc() {
-    FINISHED="false"
-    while [[ ${FINISHED} == "false" ]]; do
-        if [ $(echo "$(GetBalanceFunc) > 0.00000003" | bc ) -eq 1 ]; then
-            TryUntilSuccessLocalFunc "MintFunc"
-            if [[ ${START_FROM_ZERO} == "false" ]]; then
-                TryUntilSuccessLocalFunc "BurnFunc"
-            fi
-            if [[ ${START_FROM_ZERO} == "false" ]]; then
-                TryUntilSuccessLocalFunc "SendFunc"
-            fi
-            if [[ ${START_FROM_ZERO} == "false" ]]; then
-                echo -e "assetId: ${IDENTIFIER}.\n"
-                echo -e "balance of \$IRON: $(GetBalanceFunc).\nbalance of \$${GRAFFITI}: $(GetBalanceFunc "${IDENTIFIER}").\n"
-                echo -e "with love by @cyberomanov."
-                FINISHED="true"
-            fi
-        else
-            echo -e "not enough balance. minimum required: \$IRON 0.00000003, but you have only: \$IRON $(GetBalanceFunc).\n\nif it's a bug, try in a few minutes.\n"
-            break
-        fi
-    done
 }
 
 
@@ -203,7 +180,25 @@ function MainFunc() {
         FaucetRequestFunc
     fi
 
-    TryUntilSuccessMainFunc
+    if [ $(echo "$(GetBalanceFunc) > 0.00000003" | bc ) -eq 1 ]; then
+        TryUntilSuccessLocalFunc "MintFunc"
+        if [[ ${START_FROM_ZERO} == "false" ]]; then
+            TryUntilSuccessLocalFunc "BurnFunc"
+        fi
+        if [[ ${START_FROM_ZERO} == "false" ]]; then
+            TryUntilSuccessLocalFunc "SendFunc"
+        fi
+        if [[ ${START_FROM_ZERO} == "false" ]]; then
+            echo -e "assetId: ${IDENTIFIER}.\n"
+        fi
+
+        echo -e "balance of \$IRON: $(GetBalanceFunc).\nbalance of \$${GRAFFITI}: $(GetBalanceFunc "${IDENTIFIER}").\n"
+        echo -e "with love by @cyberomanov."
+    else
+        echo -e "not enough balance. minimum required: \$IRON 0.00000003, but you have only: \$IRON $(GetBalanceFunc).\n\nif it's a bug, try in a few minutes.\n"
+        break
+    fi
+
 }
 
 MainFunc "${1}"
