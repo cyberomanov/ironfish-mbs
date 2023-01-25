@@ -1,6 +1,11 @@
 #/usr/bin/bash
 
 
+function PrintTime() {
+    echo -e "[ $(date +"%d-%m-%y | %T") ]"
+}
+
+
 function GetRandomMintFunc() {
     RANDOM_MINT=0
     while [ $(echo "${RANDOM_MINT} < 1000" | bc) -eq 1 ]; do
@@ -35,16 +40,16 @@ function WaitTransactionToBeCompleted() {
     while [[ ${TRANSACTION_STATUS} != "confirmed" ]] && [[ ${TRANSACTION_STATUS} != "expired" ]]; do
         TRANSACTION_STATUS=$(${BIN} wallet:transaction ${HASH} | grep "Status: " | sed "s/Status: //")
         if [[ ${TRANSACTION_STATUS} == "unconfirmed" ]] || [[ ${TRANSACTION_STATUS} == "pending" ]]; then
-            echo -e "hash: ${HASH}, status: ${TRANSACTION_STATUS}."
+            echo -e "$(PrintTime) hash: ${HASH}, status: ${TRANSACTION_STATUS}."
             sleep 20
         elif [[ ${TRANSACTION_STATUS} == "confirmed" ]]; then
-            echo -e "hash: ${HASH}, status: ${TRANSACTION_STATUS}.\n"
+            echo -e "$(PrintTime) hash: ${HASH}, status: ${TRANSACTION_STATUS}.\n"
         elif [[ ${TRANSACTION_STATUS} == "expired" ]]; then
-            echo -e "hash: ${HASH}, status: ${TRANSACTION_STATUS}.\n\nthis is not okay, starting from zero.\n"
+            echo -e "$(PrintTime) hash: ${HASH}, status: ${TRANSACTION_STATUS}.\n\nthis is not okay, starting from zero.\n"
             START_FROM_ZERO="true"
         else
             START_FROM_ZERO="true"
-            echo -e "hash: ${HASH}, status: ${TRANSACTION_STATUS}.\n\nunknown status, ping @cyberomanov. starting from zero.\n"
+            echo -e "$(PrintTime) hash: ${HASH}, status: ${TRANSACTION_STATUS}.\n\nunknown status, ping @cyberomanov. starting from zero.\n"
         fi
     done
 }
@@ -117,16 +122,16 @@ function FaucetRequestFunc() {
     if [[ ${1} != '' ]]; then
         FAUCET_RESULT=$(echo -e "${1}\n\n" | ironfish faucet)
         if [[ ${FAUCET_RESULT} == *"Congratulations"* ]]; then
-            echo -e "${1}.\n\nfaucet just added your request to the queue.\n"
+            echo -e "${1}.\n\n$(PrintTime) faucet just added your request to the queue.\n"
         else
-            echo -e "${1}.\n\nfaucet request failed.\n"
+            echo -e "${1}.\n\n$(PrintTime) faucet request failed.\n"
         fi
     else
         FAUCET_RESULT=$(echo -e "\n\n" | ironfish faucet)
         if [[ ${FAUCET_RESULT} == *"Congratulations"* ]]; then
-            echo -e "...\n\nfaucet just added your request to the queue.\n"
+            echo -e "...\n\n$(PrintTime) faucet just added your request to the queue.\n"
         else
-            echo -e "...\n\nfaucet request failed.\n"
+            echo -e "...\n\n$(PrintTime) faucet request failed.\n"
         fi
     fi
 }
@@ -138,7 +143,7 @@ function GetBinaryFunc() {
         DOCKER_CONTAINER=$(docker ps | grep ironfish | awk '{ print $1 }')
         DOCKER_TEST=$(docker exec -it ${DOCKER_CONTAINER} ironfish)
         if [[ ${DOCKER_TEST} == *"Error"* ]]; then
-            echo "i don't know where is your 'ironfish' binary. set it manually."
+            echo -e "$(PrintTime) i don't know where is your 'ironfish' binary. set it manually."
         else
             BINARY="docker exec -i ${DOCKER_CONTAINER} ironfish"
         fi
@@ -163,7 +168,7 @@ function TryUntilSuccessLocalFunc() {
 
     if [[ ${FUNC_TRY} == ${MAX_TRIES} ]]; then
         START_FROM_ZERO="true"
-        echo -e "\nthis is not okay, sorry.\n"
+        echo -e "\n$(PrintTime) this is not okay, sorry.\n"
     fi
 }
 
@@ -192,10 +197,11 @@ function MainFunc() {
             echo -e "assetId: ${IDENTIFIER}.\n"
         fi
 
-        echo -e "balance of \$IRON: $(GetBalanceFunc).\nbalance of \$${GRAFFITI}: $(GetBalanceFunc "${IDENTIFIER}").\n"
+        echo -e "$(PrintTime) balance of \$IRON: $(GetBalanceFunc)."
+        echo -e "$(PrintTime) balance of \$${GRAFFITI}: $(GetBalanceFunc "${IDENTIFIER}").\n"
         echo -e "with love by @cyberomanov."
     else
-        echo -e "not enough balance. minimum required: \$IRON 0.00000003, but you have only: \$IRON $(GetBalanceFunc).\n\nif it's a bug, try in a few minutes.\n"
+        echo -e "$(PrintTime) not enough balance. minimum required: \$IRON 0.00000003, but you have only: \$IRON $(GetBalanceFunc). if it's a bug, try in a few minutes.\n"
         break
     fi
 
