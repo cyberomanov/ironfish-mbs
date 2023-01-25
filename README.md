@@ -44,37 +44,37 @@ chmod u+x mbs.sh
 ```
 Enter your email to stay updated with Iron Fish: test@gmail.com.
 
-faucet just added your request to the queue.
+[ 25-01-23 | 22:16:24 ] faucet just added your request to the queue.
 
 Creating the transaction: [████████████████████████████████████████] 100% s
 
 /////////////////// [ MINT [ 3234 ] | SUCCESS | #1 ] ///////////////////
 
-hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: pending.
-hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: pending.
-hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: unconfirmed.
-hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: unconfirmed.
-hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: confirmed.
+[ 25-01-23 | 22:16:24 ] hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: pending.
+[ 25-01-23 | 22:16:34 ] hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: pending.
+[ 25-01-23 | 22:16:44 ] hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: unconfirmed.
+[ 25-01-23 | 22:16:54 ] hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: unconfirmed.
+[ 25-01-23 | 22:17:04 ] hash: 49dffa000b75389d578e2857ba3493624cf009abe73a698f58f96586efd2602e, status: confirmed.
 
 Creating the transaction: [████████████████████████████████████████] 100% s
 
 /////////////////// [ BURN [ 49% of 3325 = 1617 ] | SUCCESS | #1 ] ///////////////////
 
-hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: pending.
-hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: pending.
-hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: unconfirmed.
-hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: unconfirmed.
-hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: confirmed.
+[ 25-01-23 | 22:17:14 ] hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: pending.
+[ 25-01-23 | 22:17:24 ] hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: pending.
+[ 25-01-23 | 22:17:34 ] hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: unconfirmed.
+[ 25-01-23 | 22:17:44 ] hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: unconfirmed.
+[ 25-01-23 | 22:17:54 ] hash: eca1685af2673bf39305937cfb93f69792effaff58f98ea9e4ee7a01b90869ef, status: confirmed.
 
 Creating the transaction: [████████████████████████████████████████] 100% s
 
 /////////////////// [ SEND [ 95% of 1708 = 1615 ] | SUCCESS | #1 ] ///////////////////
 
-hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: pending.
-hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: pending.
-hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: unconfirmed.
-hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: unconfirmed.
-hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: confirmed.
+[ 25-01-23 | 22:18:04 ] hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: pending.
+[ 25-01-23 | 22:18:14 ] hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: pending.
+[ 25-01-23 | 22:18:24 ] hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: unconfirmed.
+[ 25-01-23 | 22:18:34 ] hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: unconfirmed.
+[ 25-01-23 | 22:18:44 ] hash: b461acfb72a81ecfa7c791f853be8acf8a61c1dc2f50e5acc7136cadfccfa0e4, status: confirmed.
 
 assetId: c9b46622e3de4d46aaeda9610a98db8cbcc5e5596a19793f10eb41ae0824c712.
 
