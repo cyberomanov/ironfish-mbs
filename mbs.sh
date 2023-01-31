@@ -66,7 +66,7 @@ function GetBalanceFunc() {
 
 function MintFunc() {
     RANDOM_MINT=$(GetRandomMintFunc)
-    RESULT=$(echo "Y" | ${BIN} wallet:mint --name=${GRAFFITI} --metadata=${GRAFFITI}  --amount=${RANDOM_MINT} --fee=0.00000001 | tr -d '\0')
+    RESULT=$(echo "Y" | ${BIN} wallet:mint --name="${GRAFFITI}" --metadata="${GRAFFITI}"  --amount=${RANDOM_MINT} --fee=0.00000001 | tr -d '\0')
     CheckResultFunc "MINT [ ${RANDOM_MINT} ]" "${RESULT}"
 }
 
@@ -75,7 +75,7 @@ function BurnFunc() {
     BALANCE=$(GetBalanceFunc "${IDENTIFIER}")
     RANDOM_PERC=$(GetRandomPercFunc "30" "60")
     let "BURN_AMOUNT = ${BALANCE%.*} / 100 * ${RANDOM_PERC}"
-    RESULT=$(echo "Y" | ${BIN} wallet:burn --assetId=${IDENTIFIER} --amount=${BURN_AMOUNT} --fee=0.00000001 | tr -d '\0')
+    RESULT=$(echo "Y" | ${BIN} wallet:burn --assetId="${IDENTIFIER}" --amount="${BURN_AMOUNT}" --fee=0.00000001 | tr -d '\0')
     CheckResultFunc "BURN [ ${RANDOM_PERC}% of ${BALANCE%.*} = ${BURN_AMOUNT} ]" "${RESULT}"
 }
 
@@ -85,7 +85,7 @@ function SendFunc() {
     RANDOM_PERC=$(GetRandomPercFunc "80" "99")
     let "SEND_AMOUNT = ${BALANCE%.*} / 100 * ${RANDOM_PERC}"
     ADDRESS_TO_SEND="dfc2679369551e64e3950e06a88e68466e813c63b100283520045925adbe59ca"
-    RESULT=$(echo "Y" | ${BIN} wallet:send --assetId=${IDENTIFIER} --amount=${SEND_AMOUNT} --to=${ADDRESS_TO_SEND} --memo="${GRAFFITI}" --fee=0.00000001 | tr -d '\0')
+    RESULT=$(echo "Y" | ${BIN} wallet:send --assetId="${IDENTIFIER}" --amount="${SEND_AMOUNT}" --to="${ADDRESS_TO_SEND}" --memo="${GRAFFITI}" --fee=0.00000001 | tr -d '\0')
     CheckResultFunc "SEND [ ${RANDOM_PERC}% of ${BALANCE%.*} = ${SEND_AMOUNT} ]" "${RESULT}"
 }
 
@@ -198,7 +198,7 @@ function MainFunc() {
         fi
 
         echo -e "balance of \$IRON: $(GetBalanceFunc)."
-        echo -e "balance of \$${GRAFFITI}: $(GetBalanceFunc "${IDENTIFIER}").\n"
+        echo -e "balance of \$"${GRAFFITI}": $(GetBalanceFunc "${IDENTIFIER}").\n"
         echo -e "with love by @cyberomanov."
     else
         echo -e "$(PrintTime) not enough balance. minimum required: \$IRON 0.00000003, but you have only: \$IRON $(GetBalanceFunc). if it's a bug, try in a few minutes.\n"
