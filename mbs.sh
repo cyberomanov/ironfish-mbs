@@ -123,8 +123,10 @@ function FaucetRequestFunc() {
         FAUCET_RESULT=$(echo -e "${1}\n\n" | ironfish faucet)
         if [[ ${FAUCET_RESULT} == *"Congratulations"* ]]; then
             echo -e "${1}.\n\n$(PrintTime) faucet just added your request to the queue.\n"
+            ${BIN} wallet:rescan --reset
         else
             echo -e "${1}.\n\n$(PrintTime) faucet request failed.\n"
+            ${BIN} wallet:rescan --reset
         fi
     else
         FAUCET_RESULT=$(echo -e "\n\n" | ironfish faucet)
