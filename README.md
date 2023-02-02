@@ -97,10 +97,10 @@ crontab -e
 > With this settings script will be executed every 4 hours and all output will be logged into `/root/mbs.log`.
 > Faucet request will be executed without any email.
 ```
-10 0,4,8,12,16,20 * * * bash /root/mbs.sh >> /root/mbs.log
+22 */4 * * * bash /root/mbs.sh >> /root/mbs.log
 ```
 > With this settings script will be executed every 4 hours and all output will be logged into `/root/mbs.log`.
 > Faucet request will be executed with an specified email.
 ```
-10 0,4,8,12,16,20 * * * bash /root/mbs.sh "test@gmail.com" >> /root/mbs.log
+22 */4 * * * bash /root/mbs.sh "test@gmail.com" >> /root/mbs.log
 ```
