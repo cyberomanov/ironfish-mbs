@@ -202,7 +202,6 @@ function MainFunc() {
         echo -e "with love by @cyberomanov."
     else
         echo -e "$(PrintTime) not enough balance. minimum required: \$IRON 0.00000003, but you have only: \$IRON $(GetBalanceFunc). if it's a bug, try in a few minutes.\n"
-        break
     fi
 
 }
